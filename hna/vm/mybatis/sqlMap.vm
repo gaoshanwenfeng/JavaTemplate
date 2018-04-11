@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${domainPkg}.mapper.${data.toUpperCase()}Mapper" >
+
+	<resultMap id="${data.toUpperCase()}ResultMap" type="${domainPkg}.${data.toUpperCase()}">
+#foreach( $c in $data.getColumns() )	
+#if($c.isPk())
+		<id column="${c.getColumnName()}" property="$c.toLowerCase()" jdbcType="${c.columnDataType}" />
+#else
+		<result column="${c.getColumnName()}" property="$c.toLowerCase()" jdbcType="${c.columnDataType}" />		 
+#end
+#end
+	</resultMap>
+
+	<sql id="select$data.toUpperCase()Sql">
+		<![CDATA[
+			$data.getSelectSql()
+		]]>
+	</sql>
+	
+	<select id="find$data.toUpperCase()ByWhere" parameterType="${domainPkg}.${data.toUpperCase()}" resultMap="${data.toUpperCase()}ResultMap">
+		<include refid="select$data.toUpperCase()Sql"/>	
+		<where>
+#foreach( $c in $data.getColumns() )
+#if($c.getDataType() == 'String')
+		<if test="$c.toLowerCase() != null and $c.toLowerCase() !='' "> and t.${c.getColumnName()}=#{$c.toLowerCase()} </if>	
+#else
+		<if test="$c.toLowerCase() != null ">and t.${c.getColumnName()}=#{$c.toLowerCase()} </if>	
+#end			
+#end			
+		</where>
+	</select>
+	
+	<select id="find$data.toUpperCase()ById" parameterType="java.lang.Integer" resultMap="${data.toUpperCase()}ResultMap">
+		<include refid="select$data.toUpperCase()Sql"/>	
+				WHERE 
+#foreach( $c in $data.getColumns() )	
+#if($c.isPk())
+           ${c.getColumnName()}=#{$c.toLowerCase()}
+#end
+#end
+	</select>
+	
+	<insert id="insert$data.toUpperCase()" parameterType="${domainPkg}.${data.toUpperCase()}">
+	  INSERT INTO $data.getTableName().toUpperCase()
+	    <trim prefix="(" suffixOverrides=",">  
+#foreach( $c in $data.getColumns() )	
+#if($c.getDataType() == 'String')
+	    <if test="$c.toLowerCase() != null and $c.toLowerCase() !='' ">${c.getColumnName()},</if>
+#else
+	    <if test="$c.toLowerCase() != null ">${c.getColumnName()},</if>	
+#end		
+#end	
+	   </trim> 
+	   <trim prefix=") VALUES (" suffixOverrides=",">  
+#foreach( $c in $data.getColumns() )	
+#if($c.getDataType() == 'String')
+	    <if test="$c.toLowerCase() != null and $c.toLowerCase() !='' ">#{$c.toLowerCase()},</if>
+#else
+	    <if test="$c.toLowerCase() != null ">#{$c.toLowerCase()},</if>	
+#end		
+#end	
+	   </trim>)
+	</insert>
+	
+	<update id="update$data.toUpperCase()" parameterType="${domainPkg}.${data.toUpperCase()}">
+		UPDATE $data.getTableName().toUpperCase()
+		<trim prefix="set" suffixOverrides=","> 
+#foreach( $c in $data.getColumns() )	
+#if(!$c.isPk())
+#if($c.getDataType() == 'String')
+		<if test="$c.toLowerCase() != null and $c.toLowerCase() !='' ">${c.getColumnName()}=#{$c.toLowerCase()},</if>	
+#else
+		<if test="$c.toLowerCase() != null ">${c.getColumnName()}=#{$c.toLowerCase()},</if>	
+#end    
+#end
+#end
+		</trim>
+		WHERE 
+#foreach( $c in $data.getColumns() )	
+#if($c.isPk()) 
+		${c.getColumnName()}=#{$c.toLowerCase()} 
+#end
+#end
+   </update>
+	
+	<delete id="delete$data.toUpperCase()" parameterType="java.lang.Integer">
+		DELETE FROM $data.getTableName().toUpperCase()
+		WHERE 
+#foreach( $c in $data.getColumns() )	
+#if($c.isPk())
+               ${c.getColumnName()}=#{$c.toLowerCase()}
+#end
+#end
+	</delete>	
+	
+</mapper>

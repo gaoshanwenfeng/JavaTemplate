@@ -1,0 +1,58 @@
+package ${domainPkg}.dao;
+
+import java.util.List;
+import ${domainPkg}.domain.${data.toUpperCase()};
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $history:
+ * 
+ */
+public interface I${data.toUpperCase()}Dao {
+	/**
+	 * ${findByWhere}
+	 * @param domain
+	 * @return
+	 * @throws Exception
+	 */
+	public List<${data.toUpperCase()}> find$data.toUpperCase()ByWhere(${data.toUpperCase()} domain) throws Exception ;
+	/**
+	 * ${findByWhere}
+	 * @param domain
+	 * @param pageInfo
+	 * @return
+	 * @throws Exception
+	 */
+  public Page find$data.toUpperCase()ByWhere(${data.toUpperCase()} domain,PageInfo pageInfo) throws Exception;
+	/**
+	 * ${findById}
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ${data.toUpperCase()} find$data.toUpperCase()ById(Integer id) throws Exception ;
+
+	/**
+	 * ${delete}
+	 * @param id
+	 * @throws Exception
+	 */
+	public int delete$data.toUpperCase()(Integer id) throws Exception ;
+
+	/**
+	 *  ${update}
+	 * @param domain
+	 * @throws Exception
+	 */
+	public int update$data.toUpperCase()(${data.toUpperCase()} domain) throws Exception ;
+
+	/**
+	 * ${insert}
+	 * @param domain
+	 * @return
+	 * @throws Exception
+	 */
+	public Object insert$data.toUpperCase()(${data.toUpperCase()} domain) throws Exception ;
+}

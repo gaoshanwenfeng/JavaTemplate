@@ -34,6 +34,10 @@ public class Column {
     public String getFirstUpperCamelCaseName() {
         return CamelCaseUtil.getFirstUpperCamelCaseName(this.columnName);
     }
+    
+    public String toLowerCase() {
+        return CamelCaseUtil.getFirstLowerCamelCaseName(this.columnName);
+    }
 
     public boolean isPk() {
         return pk;

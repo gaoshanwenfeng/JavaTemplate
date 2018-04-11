@@ -1,0 +1,60 @@
+package ${domainPkg}.service;
+
+import java.util.List;
+import ${domainPkg}.domain.${data.toUpperCase()};
+
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $history:
+ * 
+ */
+public interface I$data.toUpperCase()Service extends IService {
+	
+  /**
+	 * ${insert}
+	 * @param domain
+	 * @return
+	 * @throws Exception
+	 */
+	public Object insert(${data.toUpperCase()} domain) throws Exception;
+	
+	/**
+	 *  ${delete}
+	 * @param id
+	 * @throws Exception
+	 */
+	public int delete(String id) throws Exception;
+
+	/**
+	 * ${update}
+	 * @param domain
+	 * @throws Exception
+	 */
+	public int update(${data.toUpperCase()} domain) throws Exception;
+
+	/**
+	 * ${findByWhere}
+	 * @param domain
+	 * @return
+	 * @throws Exception
+	 */
+	public List<${data.toUpperCase()}> findByWhere(${data.toUpperCase()} domain) throws Exception;
+	/**
+	 * ${findByWhere}
+	 * @param domain
+	 * @param pageInfo
+	 * @return
+	 * @throws Exception
+	 */
+  public Page findByWhere(${data.toUpperCase()} domain,PageInfo pageInfo) throws Exception;
+	/**
+	 * ${findById}
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ${data.toUpperCase()} findById(String id) throws Exception;
+}

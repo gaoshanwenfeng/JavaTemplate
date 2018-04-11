@@ -1,0 +1,86 @@
+package ${domainPkg}.service.impl;
+
+import java.util.Date;
+import java.util.List;
+import ${domainPkg}.dao.I$data.toUpperCase()Dao;
+import ${domainPkg}.service.I$data.toUpperCase()Service;
+import ${domainPkg}.domain.${data.toUpperCase()};
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $history
+ * 
+ */
+public class $data.toUpperCase()ServiceImpl implements I$data.toUpperCase()Service {
+	private static final Log log = LogFactory.getLog(${data.toUpperCase()}ServiceImpl.class);
+	private I$data.toUpperCase()Dao $data.toLowerCase()Dao;
+	
+	public I$data.toUpperCase()Dao get$data.toUpperCase()Dao() {
+		return $data.toLowerCase()Dao;
+	}
+
+	public void set$data.toUpperCase()Dao(I$data.toUpperCase()Dao $data.toLowerCase()Dao) {
+		this.${data.toLowerCase()}Dao = $data.toLowerCase()Dao;
+	}
+	
+	/**
+	 * ${delete}
+	 * @param id
+	 * @throws Exception
+	 */
+	 @Override
+	public int delete(String id) throws Exception {
+		return ${data.toLowerCase()}Dao.delete(id);
+	}
+
+	/**
+	 * ${update}
+	 * @param domain
+	 * @return
+	 * @throws Exception
+	 */
+	 @Override
+	public int update(${data.toUpperCase()} domain) throws Exception {
+		// domain.setUpdateUser(user.getUsername());
+		domain.setUpdateTime(new Date());
+		return ${data.toLowerCase()}Dao.update(domain);
+	}
+	
+	/**
+	 * ${findByWhere}
+	 * @param domain
+	 * @return
+	 * @throws Exception
+	 */
+	 @Override
+	public List findByWhere(${data.toUpperCase()} domain) throws Exception {
+		return ${data.toLowerCase()}Dao.findByWhere(domain);
+	}
+	/**
+	 * ${findByWhere}
+	 * @param domain
+	 * @param pageInfo
+	 * @return
+	 * @throws Exception
+	 */
+	 @Override
+	public Page findByWhere(${data.toUpperCase()} domain,PageInfo pageInfo) throws Exception {
+		return (Page) ${data.toLowerCase()}Dao.findByWhere(domain, pageInfo);		
+	}
+
+	/**
+	 * ${findById}
+	 * @param id
+	 * @throws Exception
+	 */
+	 @Override
+	public ${data.toUpperCase()} findById(String id) throws Exception {
+		return ${data.toLowerCase()}Dao.findById(id);		
+	}
+	
+}

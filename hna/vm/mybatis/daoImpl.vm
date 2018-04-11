@@ -1,0 +1,96 @@
+package ${domainPkg}.dao.impl;
+
+import java.util.List;
+
+import ${domainPkg}.dao.I${data.toUpperCase()}Dao;
+import ${domainPkg}.domain.${data.toUpperCase()};
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $history:
+ * 
+ */
+public class ${data.toUpperCase()}DaoImpl implements I${data.toUpperCase()}Dao {
+	private static final Log log = LogFactory.getLog(${data.toUpperCase()}DaoImpl.class);
+
+
+    private IBatisPersistenceManager persistanceManager;
+
+    public IBatisPersistenceManager getPersistanceManager() {
+        return persistanceManager;
+    }
+
+    public void setPersistanceManager(IBatisPersistenceManager persistanceManager) {
+        this.persistanceManager = persistanceManager;
+    }
+	
+	/**
+	 * ${findByWhere}
+	 * @param domain
+	 * @return
+	 * @throws Exception
+	 */
+	public List findByWhere(${data.toUpperCase()} domain) throws Exception {
+		return getPersistanceManager().find("find${data.toUpperCase()}ByWhere", domain);
+	}
+	/**
+	 * ${findByWhere}
+	 * @param domain
+	 * @param pageInfo
+	 * @return
+	 * @throws Exception
+	 */
+	public Page findByWhere(${data.toUpperCase()} domain,PageInfo pageInfo) throws Exception {
+			return this.getPersistanceManager().find("find${data.toUpperCase()}ByWhere", domain, pageInfo);
+	}
+	/**
+	 * ${findById}
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ${data.toUpperCase()} findById(String id) throws Exception {
+		return (${data.toUpperCase()}) getPersistanceManager().load("find${data.toUpperCase()}ById", id);
+	}
+
+	/**
+	 * ${delete}
+	 * @param id
+	 * @throws Exception
+	 */
+	public int delete(String id) throws Exception {
+		${data.toUpperCase()} domain = findById(id);
+		if (domain == null) {
+			throw new Exception("ID = '"+id+ "' object not exist");
+		}	
+		return getPersistanceManager().delete("delete${data.toUpperCase()}", id);
+	}
+
+	/**
+	 *  ${update}
+	 * @param domain
+	 * @throws Exception
+	 */
+	public int update(${data.toUpperCase()} domain) throws Exception {
+		${data.toUpperCase()} tmp = findById(domain.getId());
+		if (tmp == null) {
+			throw new Exception("ID = '"+domain.getId()+ "' object not exist");
+		}
+		return getPersistanceManager().update("update$data.toUpperCase()", domain);
+	}
+
+	/**
+	 * ${insert}
+	 * @param domain
+	 * @return
+	 * @throws Exception
+	 */
+	public Object insert(${data.toUpperCase()} domain) throws Exception {
+		return getPersistanceManager().insert("insert$data.toUpperCase()", domain);
+	}
+	
+}
