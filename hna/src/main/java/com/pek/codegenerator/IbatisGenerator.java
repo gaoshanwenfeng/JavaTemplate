@@ -17,7 +17,7 @@ import com.pek.codegenerator.util.CamelCaseUtil;
 
 
 
-public class Generator {
+public class IbatisGenerator {
     // 变化配置
     private static String mainPath = "D:\\Work\\genproject";//生成代码目录
     // 表配置
@@ -89,19 +89,19 @@ public class Generator {
 
         System.out.println("开始生成代码[" + mainPath + "]:");
 
-        outputCode(context, "vm/action.vm", path + "/web/action/", className + "Action.java");
+        outputCode(context, "vm/ibatis/action.vm", path + "/web/action/", className + "Action.java");
 
-        outputCode(context, "vm/service.vm", path + "/service/", "I" + className + "Service.java");
-        outputCode(context, "vm/serviceImpl.vm", path + "/service/impl/", className + "ServiceImpl.java");
+        outputCode(context, "vm/ibatis/service.vm", path + "/service/", "I" + className + "Service.java");
+        outputCode(context, "vm/ibatis/serviceImpl.vm", path + "/service/impl/", className + "ServiceImpl.java");
 
-        outputCode(context, "vm/dao.vm", path + "/dao/", "I" + className + "Dao.java");
-        outputCode(context, "vm/daoImpl.vm", path + "/dao/impl/", className + "DaoImpl.java");
-        outputCode(context, "vm/sqlMap.vm", path + "/dao/impl/", className + "DaoImpl.xml");
+        outputCode(context, "vm/ibatis/dao.vm", path + "/dao/", "I" + className + "Dao.java");
+        outputCode(context, "vm/ibatis/daoImpl.vm", path + "/dao/impl/", className + "DaoImpl.java");
+        outputCode(context, "vm/ibatis/sqlMap.vm", path + "/dao/impl/", className + "DaoImpl.xml");
 
-        outputCode(context, "vm/domain.vm", path + "/domain/", className + ".java");
+        outputCode(context, "vm/ibatis/domain.vm", path + "/domain/", className + ".java");
 
-        outputCode(context, "vm/ibatis-sqlmap.vm", mainPath + "/conf/", "ibatis-sqlmap.xml");
-        outputCode(context, "vm/applicationContext.vm", mainPath + "/springconf/", "applicationContext_" + className + ".xml");
+        outputCode(context, "vm/ibatis/ibatis-sqlmap.vm", mainPath + "/conf/", "ibatis-sqlmap.xml");
+        outputCode(context, "vm/ibatis/applicationContext.vm", mainPath + "/springconf/", "applicationContext_" + className + ".xml");
 
         System.out.println("完成代码生成。");
     }
