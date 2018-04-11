@@ -1,0 +1,36 @@
+package ${domainPkg}.domain;
+import ${frameworkPkg}.framework.core.domain.AbstractEntity;
+import java.math.BigDecimal;
+import java.util.Date;
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $createDate
+ * 
+ */
+@SuppressWarnings("serial")
+public class ${table.getFirstUpperCamelCaseName()} extends AbstractEntity {
+#foreach( $c in $table.getColumns() )
+    //${c.getComments()}
+    private $c.getDataType() $c.getFirstLowerCamelCaseName() ;
+#end
+
+#foreach( $c in $table.getColumns() )
+    /**
+     * ${get}${c.getComments()}
+     * @return
+     */
+    public $c.getDataType() get$c.getFirstUpperCamelCaseName()() {
+        return $c.getFirstLowerCamelCaseName();
+    }
+    /**
+     * ${set}${c.getComments()}
+     * @param $c.getFirstLowerCamelCaseName()
+     */    
+    public void set$c.getFirstUpperCamelCaseName()($c.getDataType() $c.getFirstLowerCamelCaseName()) {
+        this.$c.getFirstLowerCamelCaseName() = $c.getFirstLowerCamelCaseName();
+    }
+#end    
+}

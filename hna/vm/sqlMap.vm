@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="$table.getFirstLowerCamelCaseName()">
+    <typeAlias alias="$table.getFirstLowerCamelCaseName()" type="${domainPkg}.domain.${table.getFirstUpperCamelCaseName()}" />
+    
+    <resultMap id="$table.getFirstLowerCamelCaseName()ResultMap" class="$table.getFirstLowerCamelCaseName()">
+#foreach( $c in $table.getColumns() )
+        <result column="$c.getColumnName()" property="$c.getFirstLowerCamelCaseName()" />
+#end
+    </resultMap>
+    
+    <sql id="select$table.getFirstUpperCamelCaseName()Sql">
+        <![CDATA[
+            $table.getSelectSql()
+        ]]>
+    </sql>
+    
+    <select id="find$table.getFirstUpperCamelCaseName()ByWhere" parameterClass="$table.getFirstLowerCamelCaseName()" resultMap="$table.getFirstLowerCamelCaseName()ResultMap">
+        <include refid="select$table.getFirstUpperCamelCaseName()Sql"/>    
+        <dynamic prepend="WHERE">
+#foreach( $c in $table.getColumns() )    
+#if(!$c.isPk())
+            <isNotEmpty prepend="AND" property="$c.getFirstLowerCamelCaseName()">
+                T.${c.getColumnName()}=#$c.getFirstLowerCamelCaseName()#
+            </isNotEmpty>
+#end 
+#end            
+        </dynamic>
+    </select>
+    
+    <select id="find$table.getFirstUpperCamelCaseName()ById" parameterClass="java.lang.String" resultMap="$table.getFirstLowerCamelCaseName()ResultMap">
+        <include refid="select$table.getFirstUpperCamelCaseName()Sql"/>    
+        <![CDATA[
+            $table.getByIdSql()
+        ]]>
+    </select>
+    
+    <insert id="insert$table.getFirstUpperCamelCaseName()" parameterClass="$table.getFirstLowerCamelCaseName()">
+        INSERT INTO $table.getTableName().toUpperCase()
+        <dynamic prepend="(">
+#foreach( $c in $table.getColumns() )    
+            <isNotEmpty prepend="," property="$c.getFirstLowerCamelCaseName()">
+                ${c.getColumnName()}
+            </isNotEmpty>
+#end    
+        </dynamic>        
+        <dynamic prepend=") VALUES (">
+#foreach( $c in $table.getColumns() )    
+            <isNotEmpty prepend="," property="$c.getFirstLowerCamelCaseName()">
+                #$c.getFirstLowerCamelCaseName()#
+            </isNotEmpty>
+#end            
+         </dynamic>    )
+    </insert>
+    
+    <update id="update$table.getFirstUpperCamelCaseName()" parameterClass="$table.getFirstLowerCamelCaseName()">
+        UPDATE $table.getTableName().toUpperCase()
+        <dynamic prepend="set">
+#foreach( $c in $table.getColumns() )    
+#if(!$c.isPk())
+           <isNotEmpty prepend="," property="$c.getFirstLowerCamelCaseName()">
+              ${c.getColumnName()}=#$c.getFirstLowerCamelCaseName()#
+           </isNotEmpty>
+#end
+#end
+        </dynamic>
+        WHERE 
+#foreach( $c in $table.getColumns() )    
+#if($c.isPk())
+               ${c.getColumnName()}=#$c.getFirstLowerCamelCaseName()#
+#end
+#end
+    </update>    
+    
+    <delete id="delete$table.getFirstUpperCamelCaseName()" parameterClass="java.lang.String">
+        DELETE FROM $table.getTableName().toUpperCase()
+        WHERE 
+#foreach( $c in $table.getColumns() )    
+#if($c.isPk())
+               ${c.getColumnName()}=#$c.getFirstLowerCamelCaseName()#
+#end
+#end
+    </delete>    
+</sqlMap>

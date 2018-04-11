@@ -1,0 +1,124 @@
+package ${domainPkg}.web.action;
+
+import java.util.List;
+import ${frameworkPkg}.framework.core.daosupport.page.PageInfo;
+import ${frameworkPkg}.framework.web.action.BaseAction;
+import ${domainPkg}.service.I$table.getFirstUpperCamelCaseName()Service;
+import ${domainPkg}.domain.${table.getFirstUpperCamelCaseName()};
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $createDate
+ * 
+ */
+public class $table.getFirstUpperCamelCaseName()Action extends BaseAction {
+    private static final Log log = LogFactory.getLog(${table.getFirstUpperCamelCaseName()}Action.class);
+
+    // 查询分页信息
+    private PageInfo pageInfo;    
+    
+    // 新增修改页面
+    public static final String TO_ADD_MODIFY = "addModifyPage";
+    // 查看详情页面
+    public static final String TO_VIEW = "viewPage";
+    // 查询列表页面
+    public static final String TO_SEARCH = "searchPage";
+    
+    private I$table.getFirstUpperCamelCaseName()Service $table.getFirstLowerCamelCaseName()Service;
+      private $table.getFirstUpperCamelCaseName() $table.getFirstLowerCamelCaseName();
+    private List<$table.getFirstUpperCamelCaseName()> $table.getFirstLowerCamelCaseName()List;
+    
+
+    public List<$table.getFirstUpperCamelCaseName()> get$table.getFirstUpperCamelCaseName()List() {
+        return $table.getFirstLowerCamelCaseName()List;
+    }
+
+    public void set$table.getFirstUpperCamelCaseName()List(List<$table.getFirstUpperCamelCaseName()> $table.getFirstLowerCamelCaseName()List) {
+        this.$table.getFirstLowerCamelCaseName()List = $table.getFirstLowerCamelCaseName()List;
+    }
+    
+    public I$table.getFirstUpperCamelCaseName()Service get$table.getFirstUpperCamelCaseName()Service() {
+        return $table.getFirstLowerCamelCaseName()Service;
+    }
+
+    public void set$table.getFirstUpperCamelCaseName()Service(I$table.getFirstUpperCamelCaseName()Service $table.getFirstLowerCamelCaseName()Service) {
+        this.${table.getFirstLowerCamelCaseName()}Service = $table.getFirstLowerCamelCaseName()Service;
+    }
+    
+    public ${table.getFirstUpperCamelCaseName()} get${table.getFirstUpperCamelCaseName()}() {
+        return ${table.getFirstLowerCamelCaseName()};
+    }
+
+    public void set${table.getFirstUpperCamelCaseName()}(${table.getFirstUpperCamelCaseName()} ${table.getFirstLowerCamelCaseName()}) {
+        this.${table.getFirstLowerCamelCaseName()} = ${table.getFirstLowerCamelCaseName()};
+    }
+            
+    public PageInfo getPageInfo() {
+        return pageInfo;
+    }
+
+    public void setPageInfo(PageInfo pageInfo) {
+        this.pageInfo = pageInfo;
+    }
+    
+    public String add()  {
+        try {
+            ${table.getFirstLowerCamelCaseName()}Service.insert(${table.getFirstLowerCamelCaseName()});
+        } catch(Exception e){
+            log.error("", e);
+        }
+        return TO_SEARCH;
+    }
+    
+    public String delete(){
+        try {
+            ${table.getFirstLowerCamelCaseName()}Service.delete(${table.getFirstLowerCamelCaseName()}.getId());
+        } catch(Exception e){
+            log.error("", e);
+        }
+        return TO_SEARCH;
+    }
+    
+    public String modify()  {
+        try {
+            ${table.getFirstLowerCamelCaseName()}Service.update($table.getFirstLowerCamelCaseName());
+        } catch(Exception e){
+            log.error("", e);
+        }
+        return TO_SEARCH;
+    }
+    
+    public String search()  {
+         try {
+               $table.getFirstLowerCamelCaseName()List = ${table.getFirstLowerCamelCaseName()}Service.findByWhere($table.getFirstLowerCamelCaseName());
+         } catch(Exception e){
+                log.error("", e);
+         }
+         return TO_SEARCH;
+    }
+    
+    public String toAddModify(){
+        if (${table.getFirstLowerCamelCaseName()}.getId() != null) {
+            try {
+            	${table.getFirstLowerCamelCaseName()} = ${table.getFirstLowerCamelCaseName()}Service.findById(${table.getFirstLowerCamelCaseName()}.getId());
+            } catch(Exception e){
+                log.error("", e);
+            }
+        }
+        return TO_ADD_MODIFY;
+    }
+    
+    public String toView(){
+        try {
+        	${table.getFirstLowerCamelCaseName()} = ${table.getFirstLowerCamelCaseName()}Service.findById(${table.getFirstLowerCamelCaseName()}.getId());
+        } catch(Exception e){
+            log.error("", e);
+        }
+        return TO_VIEW;
+    }
+}

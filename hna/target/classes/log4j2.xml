@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF">
+    <Appenders>
+        <RollingRandomAccessFile name="LogFile" fileName="codegenerator.log" filePattern="log/codegenerator.%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>%-d{yyyy-MM-dd HH:mm:ss} [%-32t] [%-5p] [%c:%L] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingRandomAccessFile>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-d{yyyy-MM-dd HH:mm:ss} [%-32t] [%-5p] [%c:%L] %m%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <Appender-ref ref="LogFile" />
+        </Root>
+        <Logger name="com.pek" level="debug" additivity="false">
+            <Appender-ref ref="LogFile" />
+            <Appender-ref ref="Console" />
+        </Logger>
+    </Loggers>
+</Configuration>

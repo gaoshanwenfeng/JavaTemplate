@@ -1,0 +1,65 @@
+package ${domainPkg}.service;
+
+import java.util.List;
+import ${frameworkPkg}.framework.core.service.IService;
+import ${frameworkPkg}.framework.core.daosupport.page.Page;
+import ${frameworkPkg}.framework.core.daosupport.page.PageInfo;
+import ${domainPkg}.domain.${table.getFirstUpperCamelCaseName()};
+
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $createDate
+ * 
+ */
+public interface I$table.getFirstUpperCamelCaseName()Service extends IService {
+    
+    /**
+     * ${insert}
+     * @param domain
+     * @return
+     * @throws Exception
+     */
+    public Object insert(${table.getFirstUpperCamelCaseName()} domain) throws Exception;
+    
+    /**
+     *  ${delete}
+     * @param id
+     * @throws Exception
+     */
+    public int delete(String id) throws Exception;
+
+    /**
+     * ${update}
+     * @param domain
+     * @throws Exception
+     */
+    public int update(${table.getFirstUpperCamelCaseName()} domain) throws Exception;
+
+    /**
+     * ${findByWhere}
+     * @param domain
+     * @return
+     * @throws Exception
+     */
+    public List<${table.getFirstUpperCamelCaseName()}> findByWhere(${table.getFirstUpperCamelCaseName()} domain) throws Exception;
+    
+    /**
+     * ${findByWhere}
+     * @param domain
+     * @param pageInfo
+     * @return
+     * @throws Exception
+     */
+    public Page findByWhere(${table.getFirstUpperCamelCaseName()} domain,PageInfo pageInfo) throws Exception;
+    
+    /**
+     * ${findById}
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public ${table.getFirstUpperCamelCaseName()} findById(String id) throws Exception;
+}

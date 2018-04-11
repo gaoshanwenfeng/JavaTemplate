@@ -1,0 +1,98 @@
+package ${domainPkg}.dao.impl;
+
+import java.util.List;
+
+import ${frameworkPkg}.framework.core.daosupport.IBatisPersistenceManager;
+import ${frameworkPkg}.framework.core.daosupport.page.Page;
+import ${frameworkPkg}.framework.core.daosupport.page.PageInfo;
+import ${domainPkg}.dao.I${table.getFirstUpperCamelCaseName()}Dao;
+import ${domainPkg}.domain.${table.getFirstUpperCamelCaseName()};
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $createDate
+ * 
+ */
+public class ${table.getFirstUpperCamelCaseName()}DaoImpl implements I${table.getFirstUpperCamelCaseName()}Dao {
+    private static final Log log = LogFactory.getLog(${table.getFirstUpperCamelCaseName()}DaoImpl.class);
+
+    private IBatisPersistenceManager persistanceManager;
+
+    public IBatisPersistenceManager getPersistanceManager() {
+        return persistanceManager;
+    }
+
+    public void setPersistanceManager(IBatisPersistenceManager persistanceManager) {
+        this.persistanceManager = persistanceManager;
+    }
+    
+    /**
+     * ${findByWhere}
+     * @param domain
+     * @return
+     * @throws Exception
+     */
+    public  List<${table.getFirstUpperCamelCaseName()}> findByWhere(${table.getFirstUpperCamelCaseName()} domain) throws Exception {
+        return (List<${table.getFirstUpperCamelCaseName()}>)getPersistanceManager().find("find${table.getFirstUpperCamelCaseName()}ByWhere", domain);
+    }
+    
+    /**
+     * ${findByWhere}
+     * @param domain
+     * @param pageInfo
+     * @return
+     * @throws Exception
+     */
+    public Page findByWhere(${table.getFirstUpperCamelCaseName()} domain,PageInfo pageInfo) throws Exception {
+        return this.getPersistanceManager().find("find${table.getFirstUpperCamelCaseName()}ByWhere", domain, pageInfo);
+    }
+    
+    /**
+     * ${findById}
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public ${table.getFirstUpperCamelCaseName()} findById(String id) throws Exception {
+        return (${table.getFirstUpperCamelCaseName()}) getPersistanceManager().load("find${table.getFirstUpperCamelCaseName()}ById", id);
+    }
+
+    /**
+     * ${delete}
+     * @param id
+     * @throws Exception
+     */
+    public int delete(String id) throws Exception {
+		if (id != null) {
+			return getPersistanceManager().delete("delete${table.getFirstUpperCamelCaseName()}", id);
+		}
+		throw new Exception("ID = '"+ id + "' object delete fail, may be not exist");
+    }
+
+    /**
+     *  ${update}
+     * @param domain
+     * @throws Exception
+     */
+    public int update(${table.getFirstUpperCamelCaseName()} domain) throws Exception {
+		if (domain.getId() != null) {
+			return getPersistanceManager().update("update$table.getFirstUpperCamelCaseName()", domain);
+		}
+		throw new Exception("ID = '"+ domain.getId() + "' object update fail, may be not exist");
+    }
+
+    /**
+     * ${insert}
+     * @param domain
+     * @return
+     * @throws Exception
+     */
+    public Object insert(${table.getFirstUpperCamelCaseName()} domain) throws Exception {
+        return getPersistanceManager().insert("insert$table.getFirstUpperCamelCaseName()", domain);
+    }
+    
+}

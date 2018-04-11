@@ -1,0 +1,96 @@
+package ${domainPkg}.service.impl;
+
+import java.util.List;
+import ${frameworkPkg}.framework.core.daosupport.page.Page;
+import ${frameworkPkg}.framework.core.daosupport.page.PageInfo;
+import ${domainPkg}.dao.I$table.getFirstUpperCamelCaseName()Dao;
+import ${domainPkg}.service.I$table.getFirstUpperCamelCaseName()Service;
+import ${domainPkg}.domain.${table.getFirstUpperCamelCaseName()};
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * $project
+ * 
+ * $desc
+ * 
+ * $createDate
+ * 
+ */
+public class $table.getFirstUpperCamelCaseName()ServiceImpl implements I$table.getFirstUpperCamelCaseName()Service {
+    private static final Log log = LogFactory.getLog(${table.getFirstUpperCamelCaseName()}ServiceImpl.class);
+    private I$table.getFirstUpperCamelCaseName()Dao $table.getFirstLowerCamelCaseName()Dao;
+    
+    public I$table.getFirstUpperCamelCaseName()Dao get$table.getFirstUpperCamelCaseName()Dao() {
+        return $table.getFirstLowerCamelCaseName()Dao;
+    }
+
+    public void set$table.getFirstUpperCamelCaseName()Dao(I$table.getFirstUpperCamelCaseName()Dao $table.getFirstLowerCamelCaseName()Dao) {
+        this.${table.getFirstLowerCamelCaseName()}Dao = $table.getFirstLowerCamelCaseName()Dao;
+    }
+    
+    /**
+     * ${insert}
+     * @param domain
+     * @return
+     * @throws Exception
+     */
+     @Override
+    public Object insert(${table.getFirstUpperCamelCaseName()} domain) throws Exception {
+          return ${table.getFirstLowerCamelCaseName()}Dao.insert(domain);
+    }
+    
+    /**
+     * ${delete}
+     * @param id
+     * @throws Exception
+     */
+     @Override
+    public int delete(String id) throws Exception {
+        return ${table.getFirstLowerCamelCaseName()}Dao.delete(id);
+    }
+
+    /**
+     * ${update}
+     * @param domain
+     * @return
+     * @throws Exception
+     */
+     @Override
+    public int update(${table.getFirstUpperCamelCaseName()} domain) throws Exception {
+        return ${table.getFirstLowerCamelCaseName()}Dao.update(domain);
+    }
+    
+    /**
+     * ${findByWhere}
+     * @param domain
+     * @return
+     * @throws Exception
+     */
+     @Override
+    public List<${table.getFirstUpperCamelCaseName()}> findByWhere(${table.getFirstUpperCamelCaseName()} domain) throws Exception {
+        return ${table.getFirstLowerCamelCaseName()}Dao.findByWhere(domain);
+    }
+    
+    /**
+     * ${findByWhere}
+     * @param domain
+     * @param pageInfo
+     * @return
+     * @throws Exception
+     */
+     @Override
+    public Page findByWhere(${table.getFirstUpperCamelCaseName()} domain,PageInfo pageInfo) throws Exception {
+        return (Page) ${table.getFirstLowerCamelCaseName()}Dao.findByWhere(domain, pageInfo);        
+    }
+
+    /**
+     * ${findById}
+     * @param id
+     * @throws Exception
+     */
+     @Override
+    public ${table.getFirstUpperCamelCaseName()} findById(String id) throws Exception {
+        return ${table.getFirstLowerCamelCaseName()}Dao.findById(id);        
+    }    
+}
